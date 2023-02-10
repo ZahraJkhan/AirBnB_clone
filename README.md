@@ -4,9 +4,9 @@
 
 ## Project Description
 This is the first part of the AirBnB clone project divided into 3 parts:
-	*Backend
-	*Frontend
-	*Storage
+	**Backend </br>
+	**Frontend </br>
+	**Storage </br>
 
 The complete product will have:
 
@@ -110,5 +110,5 @@ $ git clone ...
 
 
 ## CODESMITHS
- Zahra Jalalkhan
+ Zahra Jalalkhan</br>
  Kibet Richard

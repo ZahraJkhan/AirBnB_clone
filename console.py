@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""" comand interpreter """
+"""" comand interpreter 
+     Documentetion: https://pymotw.com/3/cmd/ 
+"""
 
 import cmd
 import re

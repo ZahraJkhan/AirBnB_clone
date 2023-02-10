@@ -3,10 +3,10 @@
 
 
 ## Project Description
-This is the first part of the AirBnB clone project divided into 3 parts:
-	**Backend </br>
-	**Frontend </br>
-	**Storage </br>
+This is the first part of the AirBnB clone project divided into 3 parts: </br>
+- Backend </br>
+- Frontend </br>
+- Storage </br>
 
 The complete product will have:
 

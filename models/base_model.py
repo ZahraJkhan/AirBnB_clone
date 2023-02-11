@@ -12,11 +12,11 @@ class BaseModel:
    class Atributes:
         id: uuid
         created_at: datetime
-	updated_at: datetime
+        updated_at: datetime
 
     methods:
         __str__: prints naem,id, and creates dict
-        save(self): save updated intance class attribute 
+        save(self): save updated intance class attribute
         to_dict: value f dctionary
     """
 
@@ -46,7 +46,8 @@ class BaseModel:
     def __str__(self):
         """ Return string format"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
-			             self.id, self.__dict__)
+                                     self.id, self.__dict__)
+
     def save(self):
         """updates attribute update_at"""
         self.updated_at = datetime.now()

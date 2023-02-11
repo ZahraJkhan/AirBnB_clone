@@ -11,7 +11,7 @@ from models.city import City
 
 class TestC_instantiation(unittest.TestCase):
     """ instantiation of class"""
-   
+
     def test_no_or_arg_instances(self):
         self.assertEqual(City, type(City()))
 
@@ -50,6 +50,7 @@ class TestC_instantiation(unittest.TestCase):
         with self.assertRaises(TypeError):
             City(id=None, created_at=None, updated_at=None)
 
+
 class TestCity_save(unittest.TestCase):
     """Unittests for testing save method of the City class."""
 
@@ -62,7 +63,7 @@ class TestCity_save(unittest.TestCase):
 
     def destroy(self):
         try:
-           os.remove("file.json")
+            os.remove("file.json")
         except IOError:
             pass
         try:
@@ -80,6 +81,7 @@ class TestCity_save(unittest.TestCase):
         cyid = "City." + c.id
         with open("file.json", "r") as f:
             self.assertIn(cyid, f.read())
+
 
 class TestCity_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the City class."""

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""" comand interpreter 
-     Documentetion: https://pymotw.com/3/cmd/ 
+"""" comand interpreter
+     Documentetion: https://pymotw.com/3/cmd/
 """
 
 import cmd
@@ -20,7 +20,6 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """ console class """
     prompt = "(hbnb) "
-    
 
     def do_EOF(self, line):
         """ Exit program """
@@ -31,7 +30,6 @@ class HBNBCommand(cmd.Cmd):
         """ Exit program """
         return True
 
-    
     def emptyline(self):
         pass
 
@@ -47,8 +45,8 @@ class HBNBCommand(cmd.Cmd):
             print(s.id)
 
     def do_show(self, line):
-        """ string representation of an instance based on 
-                    class name 
+        """ string representation of an instance based on
+                    class name
                     id
         """
         if line is None or line == "":
@@ -67,12 +65,12 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[k])
 
     def do_destroy(self, line):
-        """ Deletes an instance based on 
-                class name 
+        """ Deletes an instance based on
+                class name
                 id
         """
         if line is None or line == "":
-          print("** class name missing **")
+            print("** class name missing **")
         else:
             kword = line.split(' ')
             if kword[0] not in storage.classes():
@@ -95,17 +93,17 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 a = [str(obj) for key, obj in storage.all().items()
-		     if type(obj).__name__ == kword[0]]
+                     if type(obj).__name__ == kword[0]]
                 print(a)
         else:
             new = [str(obj) for key, obj in storage.all().items()]
             print(new)
 
     def do_update(self, line):
-        """  Updates an instance based on 
-		class name 
-		id 
-             by adding or updating attribute
+        """  Updates an instance based on
+                class name
+                id
+                by adding or updating attribute
         """
         if line == "" or line is None:
             print("** class name missing **")
@@ -133,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 cast = None
-                #want to know if value is float
+                """want to know if value is float"""
                 if not re.search('^".*"$', value):
                     if '.' in value:
                         cast = float
@@ -199,6 +197,29 @@ class HBNBCommand(cmd.Cmd):
         command = method + " " + classname + " " + uid + " " + attr_and_value
         self.onecmd(command)
         return command
+
+    def update_dict(self, classname, uid, s_dict):
+        """Helper method for update() with a dictionary."""
+        s = s_dict.replace("'", '"')
+        d = json.loads(s)
+        if not classname:
+            print("** class name missing **")
+        elif classname not in storage.classes():
+            print("** class doesn't exist **")
+        elif uid is None:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(classname, uid)
+            if key not in storage.all():
+                print("** no instance found **")
+            else:
+                attributes = storage.attributes()[classname]
+                for attribute, value in d.items():
+                    if attribute in attributes:
+                        value = attributes[attribute](value)
+                    setattr(storage.all()[key], attribute, value)
+                storage.all()[key].save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

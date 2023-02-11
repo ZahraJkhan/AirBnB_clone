@@ -13,8 +13,8 @@ from models.review import Review
 
 
 class FileStorage:
-    """ instance of the file storage 
-	serialization and decerialiation
+    """ instance of the file storage
+        serialization and decerialiation
     """
 
     __file_path = "file.json"
@@ -25,29 +25,29 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """ sets in __objects the obj with key 
-	    self.__objects[object.__class__.__name__ + '.' + str(object)] = obj
-	"""
+        """ sets in __objects the obj with key
+            self.__objects[object.__class__.__name__ + '.' + str(object)] = obj
+        """
         st1 = obj.__class__.__name__
         st2 = st1 + "." + obj.id
         self.__objects.setdefault(st2, obj)
 
     def save(self):
-        """ serialization to json file 
-	
-	requirements
+        """ serialization to json file
 
-	path: __file_path
-	w:  write
-	"""
-	
+            requirements
+
+            path: __file_path
+            w:  write
+        """
+
         with open(self.__file_path, "w", encoding="utf-8") as f:
             a = {k: v.to_dict() for k, v in self.__objects.items()}
             json.dump(a, f)
-            
+
     def classes(self):
         """Returns a dictionary of valid classes and their references"""
-       
+
         classes = {"BaseModel": BaseModel,
                    "User": User,
                    "State": State,
@@ -56,7 +56,7 @@ class FileStorage:
                    "Place": Place,
                    "Review": Review}
         return classes
-        
+
     def attributes(self):
         """Returns the valid attributes and their types for classname"""
         attributes = {
@@ -98,7 +98,7 @@ class FileStorage:
     def reload(self):
         """ deserializes the JSON file to __objects
              only if the JSON file (__file_path) exists
-        """	
+        """
 
         try:
             d1 = {}
@@ -114,5 +114,5 @@ class FileStorage:
                         a = self.classes[idx](**d1[key])
                 d2.setdefault(key, a)
             self.__objects = d2
-        except:
-                pass
+        except Exception:
+            pass

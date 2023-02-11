@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Unit tests for the console 
+Unit tests for the console
 """
 
 import os
@@ -30,6 +30,7 @@ class TestPrompting(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd(""))
             self.assertEqual("", output.getvalue().strip())
 
+
 class TestCommand_exit(unittest.TestCase):
     """Unittests for testing exiting from the HBNB command interpreter."""
 
@@ -40,6 +41,7 @@ class TestCommand_exit(unittest.TestCase):
     def test_EOF_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("EOF"))
+
 
 class TestConsole(unittest.TestCase):
     """
@@ -76,6 +78,7 @@ class TestConsole(unittest.TestCase):
             return self.mock_stdout.write.call_args[0][0]
         return "".join(map(lambda c: c[0][0],
                            self.mock_stdout.write.call_args_list[-nr:]))
+
 
 if __name__ == '__main__':
     unittest.main()

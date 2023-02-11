@@ -65,6 +65,7 @@ class TestState_instantiation(unittest.TestCase):
         with self.assertRaises(TypeError):
             State(id=None, created_at=None, updated_at=None)
 
+
 class TestState_save(unittest.TestCase):
     """Unittests for testing save method of the State class."""
 
@@ -84,7 +85,7 @@ class TestState_save(unittest.TestCase):
             os.rename("tmp", "file.json")
         except IOError:
             pass
-    
+
     def test_save_with_arg(self):
         st = State()
         with self.assertRaises(TypeError):
@@ -96,5 +97,7 @@ class TestState_save(unittest.TestCase):
         stid = "State." + st.id
         with open("file.json", "r") as f:
             self.assertIn(stid, f.read())
+
+
 if __name__ == "__main__":
     unittest.main()

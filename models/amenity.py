@@ -5,5 +5,5 @@ from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-        """ inherites from BaseModel """
-        name = ""
+    """ inherites from BaseModel """
+    name = ""
